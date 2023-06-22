@@ -6,6 +6,8 @@ import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlin.colorvalue.Adapters.ColorApater
 import com.example.kotlin.colorvalue.databinding.ActivityMainBinding
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
 
 class MainActivity: Activity() {
     private lateinit var binding: ActivityMainBinding
@@ -19,12 +21,21 @@ class MainActivity: Activity() {
         val newColor = Color(0,hex = "#00722e", name = "verde")
         Log.i("New_Color", newColor.hex + " -> "+newColor.name )
         //colorDao.insert(newColor)
-        var dataT = colorDao.getAll()
+
+        /*var dataT = colorDao.getAll()
 
         //Llamar al método para la creación del recyclerView enviandole los datos del Room
         setUpRecyclerView(dataT)
-        Log.i("Quantity_Colors", dataT.size.toString() )
+        Log.i("Quantity_Colors", dataT.size.toString() )*/
 
+    }
+
+    fun trf(colorDao:ColorDao){
+        runBlocking {
+            val tf = async{ ColorViewModel(colorDao, application).getAllColors()}
+            var t=tf.await()
+
+        }
     }
 
     private  fun initializeBinding(){

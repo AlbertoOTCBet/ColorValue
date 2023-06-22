@@ -14,10 +14,10 @@ interface ColorDao {
     suspend fun getAll(): Array<Color>
 
     @Query("SELECT * FROM colors WHERE name = :name")
-    suspend fun getColorByName(name: String): LiveData<Color>
+    fun getColorByName(name: String): LiveData<Color>
 
     @Query("SELECT * FROM colors WHERE hex_color = :hex")
-    suspend fun getColorByHex(hex: String): LiveData<Color>
+    fun getColorByHex(hex: String): LiveData<Color>
 
     @Insert
     suspend fun insert(vararg color: Color)
