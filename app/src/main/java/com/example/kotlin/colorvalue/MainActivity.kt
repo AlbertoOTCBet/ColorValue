@@ -21,7 +21,7 @@ class MainActivity: Activity() {
         //colorDao.insert(newColor)
         var dataT = colorDao.getAll()
 
-        //Llamar al método para la creación del recyclerView enviandole los datos otenidos del Room
+        //Llamar al método para la creación del recyclerView enviandole los datos del Room
         setUpRecyclerView(dataT)
         Log.i("Quantity_Colors", dataT.size.toString() )
 
