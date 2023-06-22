@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase
 @Database(entities = [Color::class], version = 1)
 abstract class ColorDatabase : RoomDatabase() {
     abstract fun colorDao(): ColorDao
-    companion object {
+    /*companion object {
         @Volatile
         private var INSTANCE: ColorDatabase? = null
         fun getInstance(context: Context): ColorDatabase {
@@ -23,5 +23,24 @@ abstract class ColorDatabase : RoomDatabase() {
             }
         }
 
+    }*/
+
+    companion object {
+        @Volatile
+        private var instance: ColorDatabase? = null
+        private val LOCK = Any()
+
+        operator fun invoke(context: Context) = instance ?:
+        synchronized(LOCK) {
+            instance ?:
+            createDatabase(context).also { instance = it }
+        }
+        private fun createDatabase(context: Context) =
+            Room.databaseBuilder(
+                context.applicationContext,
+                ColorDatabase::class.java,
+                "color_database"
+            ).allowMainThreadQueries()
+                .build()
     }
 }
