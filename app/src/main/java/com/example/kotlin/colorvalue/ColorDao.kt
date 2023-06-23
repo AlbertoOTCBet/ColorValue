@@ -10,8 +10,8 @@ import androidx.room.Update
 @Dao
 interface ColorDao {
 
-    @Query("SELECT * FROM colors")
-    suspend fun getAll(): Array<Color>
+    @Query("SELECT * FROM colors ORDER BY _id DESC")
+    fun getAll(): LiveData<List<Color>>
 
     @Query("SELECT * FROM colors WHERE name = :name")
     fun getColorByName(name: String): LiveData<Color>
@@ -25,7 +25,7 @@ interface ColorDao {
     @Update
     suspend fun update(color: Color)
 
-    @Delete
+    @Delete()
     suspend fun delete(color: Color)
 
 }

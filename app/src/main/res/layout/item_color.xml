@@ -7,11 +7,20 @@
     <TextView
         android:id="@+id/content_color"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="90dp"
         android:text="Color"
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:layout_marginRight=".1in"
         android:layout_marginLeft=".1in"/>
+     <!--<Button
+         android:id="@+id/btn_delete"
+         android:layout_width="50sp"
+         android:layout_height="40sp"
+         android:background="@color/white"
+         android:text=""
+         android:layout_gravity="bottom|right"
+         android:layout_marginRight=".1in"
+         android:gravity="center"/>-->
 
 </LinearLayout>

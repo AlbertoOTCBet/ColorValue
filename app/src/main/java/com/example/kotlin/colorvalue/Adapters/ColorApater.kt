@@ -1,14 +1,16 @@
 package com.example.kotlin.colorvalue.Adapters
 
+import android.app.Application
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.colorvalue.Color
+import com.example.kotlin.colorvalue.ColorDao
 import com.example.kotlin.colorvalue.databinding.ItemColorBinding
 
 class ColorApater: RecyclerView.Adapter<ColorViewHolder>() {
-    lateinit var data: Array<Color>
+    private var data = emptyArray<Color>()
     lateinit var contex: Context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ColorViewHolder {
@@ -25,8 +27,8 @@ class ColorApater: RecyclerView.Adapter<ColorViewHolder>() {
         holder.bin( item, contex)
     }
 
-    fun ColorApater(dataBasic: Array<Color>, context: Context){
-        this.data = dataBasic
+    fun ColorApater(dataBasic: List<Color>, context: Context){
+        this.data = dataBasic.toTypedArray()
         this.contex = context
     }
 }
